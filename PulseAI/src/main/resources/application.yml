@@ -1,3 +1,9 @@
 spring:
   application:
     name: PulseAI
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fitness-micro-user
+    username: postgres
+    password: 1234
+
