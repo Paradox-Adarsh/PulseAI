@@ -1,4 +1,4 @@
-package com.pulse.ai.fitness.controllers;
+package com.pulse.ai.userservice.fitness.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pulse.ai.fitness.dto.RegisterRequestDTO;
-import com.pulse.ai.fitness.dto.UserResponseDTO;
-import com.pulse.ai.fitness.services.UserService;
+import com.pulse.ai.userservice.fitness.dto.RegisterRequestDTO;
+import com.pulse.ai.userservice.fitness.dto.UserResponseDTO;
+import com.pulse.ai.userservice.fitness.services.UserService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

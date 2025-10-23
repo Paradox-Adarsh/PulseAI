@@ -1,4 +1,4 @@
-package com.pulse.ai.fitness.dto;
+package com.pulse.ai.userservice.fitness.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

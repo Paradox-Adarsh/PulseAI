@@ -1,4 +1,4 @@
-package com.pulse.ai.fitness.dto;
+package com.pulse.ai.userservice.fitness.dto;
 
 import java.time.LocalDateTime;
 

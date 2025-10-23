@@ -1,4 +1,4 @@
-package com.pulse.ai.fitness.models;
+package com.pulse.ai.userservice.fitness.models;
 
 import java.time.LocalDateTime;
 
