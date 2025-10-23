@@ -3,8 +3,8 @@ package com.pulse.ai.fitness.services;
 import org.springframework.stereotype.Service;
 
 import com.pulse.ai.fitness.Repository.UserRepository;
-import com.pulse.ai.fitness.dto.RegisterRequest;
-import com.pulse.ai.fitness.dto.UserResponse;
+import com.pulse.ai.fitness.dto.RegisterRequestDTO;
+import com.pulse.ai.fitness.dto.UserResponseDTO;
 import com.pulse.ai.fitness.models.User;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +17,12 @@ public class UserService {
 	
 	private UserRepository repository;
 
-	public UserResponse register(RegisterRequest request) {
+	public UserResponseDTO register(RegisterRequestDTO request) {
+		
+		if(repository.existsByEmail(request.getEmail())) {
+			throw new RuntimeException("User already exists");
+		}
+		
 		User user=new User();
 		user.setEmail(request.getEmail());
 		user.setPassword(request.getPassword());
@@ -26,11 +31,28 @@ public class UserService {
 		
 		User savedUser=repository.save(user);
 		
-		UserResponse response=new UserResponse();
+		UserResponseDTO response=new UserResponseDTO();
+		response.setId(savedUser.getId());
 		response.setEmail(savedUser.getEmail());
 		response.setPassword(savedUser.getPassword());
 		response.setFirstName(savedUser.getFirstName());
 		response.setLastName(savedUser.getLastName());
+		
+		
+		return response;
+	}
+
+	public UserResponseDTO findUser(String userId) {
+		User user=repository.findById(userId).orElseThrow(()->new RuntimeException("User not found"));
+		
+		UserResponseDTO response=new UserResponseDTO();
+//		response.setId(user.getId());
+		response.setEmail(user.getEmail());
+		response.setPassword(user.getPassword());
+		response.setFirstName(user.getFirstName());
+		response.setLastName(user.getLastName());
+		
+		
 		
 		return response;
 	}
