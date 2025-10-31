@@ -1,4 +1,4 @@
-package com.pulse.ai.applicationservice.fitness.modals;
+package com.pulse.ai.applicationservice.fitness.models;
 
 public enum ActivityType {
 	RUNNING,
