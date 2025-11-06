@@ -1,0 +1,10 @@
+package com.pulse.ai.applicationservice.fitness.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
+
+@Configuration
+@EnableMongoAuditing
+public class MongoConfig {
+
+}

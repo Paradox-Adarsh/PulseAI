@@ -9,27 +9,24 @@ import com.pulse.ai.applicationservice.fitness.repository.ActivityRepository;
 
 import lombok.RequiredArgsConstructor;
 
-
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
-	
-	private final ActivityRepository  activityRepo;
+
+	private final ActivityRepository activityRepo;
 
 	public ActivityResponse trackActivity(ActivityRequest request) {
-		
-		Activity activity=  Activity.builder().userId(request.getUserId()).type(request.getType())
-				.duration(request.getDuration()).caloriesBurned(request.getCaloriesBurned()).startTime(request.getStartTime()).additionalMetrics(request.getAdditionalMetrics()).build()
-	Activity savedActivity=activityRepo.save(activity);
+
+		Activity activity = Activity.builder().userId(request.getUserId()).type(request.getType())
+				.duration(request.getDuration()).caloriesBurned(request.getCaloriesBurned())
+				.startTime(request.getStartTime()).additionalMetrics(request.getAdditionalMetrics()).build();
+		Activity savedActivity = activityRepo.save(activity);
 		return mapToResponse(savedActivity);
-		
-	
-	
-	
+
 	}
 
 	private ActivityResponse mapToResponse(Activity savedActivity) {
-		ActivityResponse response=new ActivityResponse();
+		ActivityResponse response = new ActivityResponse();
 		response.setId(savedActivity.getId());
 		response.setUserId(savedActivity.getUserId());
 		response.setType(savedActivity.getType());
