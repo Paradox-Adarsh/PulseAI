@@ -1,4 +1,4 @@
-package com.pulse.ai.applicationservice.fitness.controllers;
+package com.pulse.ai.activityservice.fitness.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pulse.ai.applicationservice.fitness.dto.ActivityRequest;
-import com.pulse.ai.applicationservice.fitness.dto.ActivityResponse;
-import com.pulse.ai.applicationservice.fitness.service.ActivityService;
+import com.pulse.ai.activityservice.fitness.dto.ActivityRequest;
+import com.pulse.ai.activityservice.fitness.dto.ActivityResponse;
+import com.pulse.ai.activityservice.fitness.service.ActivityService;
 
 import lombok.AllArgsConstructor;
 

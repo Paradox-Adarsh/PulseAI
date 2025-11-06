@@ -1,4 +1,4 @@
-package com.pulse.ai.applicationservice;
+package com.pulse.ai.activityservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

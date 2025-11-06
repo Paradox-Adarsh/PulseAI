@@ -1,11 +1,11 @@
-package com.pulse.ai.applicationservice.fitness.service;
+package com.pulse.ai.activityservice.fitness.service;
 
 import org.springframework.stereotype.Service;
 
-import com.pulse.ai.applicationservice.fitness.dto.ActivityRequest;
-import com.pulse.ai.applicationservice.fitness.dto.ActivityResponse;
-import com.pulse.ai.applicationservice.fitness.models.Activity;
-import com.pulse.ai.applicationservice.fitness.repository.ActivityRepository;
+import com.pulse.ai.activityservice.fitness.dto.ActivityRequest;
+import com.pulse.ai.activityservice.fitness.dto.ActivityResponse;
+import com.pulse.ai.activityservice.fitness.models.Activity;
+import com.pulse.ai.activityservice.fitness.repository.ActivityRepository;
 
 import lombok.RequiredArgsConstructor;
 

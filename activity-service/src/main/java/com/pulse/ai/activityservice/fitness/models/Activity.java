@@ -1,4 +1,4 @@
-package com.pulse.ai.applicationservice.fitness.models;
+package com.pulse.ai.activityservice.fitness.models;
 
 import java.time.LocalDateTime;
 import java.util.Map;
