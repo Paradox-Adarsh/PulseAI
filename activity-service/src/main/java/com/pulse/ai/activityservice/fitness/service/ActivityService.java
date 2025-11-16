@@ -14,8 +14,14 @@ import lombok.RequiredArgsConstructor;
 public class ActivityService {
 
 	private final ActivityRepository activityRepo;
+	
+	private final UserValidationService validate;
 
 	public ActivityResponse trackActivity(ActivityRequest request) {
+		
+		if (!validate.validateUser(request.getUserId())) {
+			throw new RuntimeException("Invalid User Id"+request.getUserId());
+		}
 
 		Activity activity = Activity.builder().userId(request.getUserId()).type(request.getType())
 				.duration(request.getDuration()).caloriesBurned(request.getCaloriesBurned())

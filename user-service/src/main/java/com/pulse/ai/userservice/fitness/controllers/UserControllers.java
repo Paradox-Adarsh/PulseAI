@@ -19,24 +19,22 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/api/users")
 @AllArgsConstructor
 public class UserControllers {
-	
+
 	private UserService userServ;
-	
-	
+
 	@GetMapping("/{userId}")
-	
-	public ResponseEntity<UserResponseDTO>findUserProfile(@PathVariable String userId){
-		
-		
+	public ResponseEntity<UserResponseDTO> findUserProfile(@PathVariable String userId) {
 		return ResponseEntity.ok(userServ.findUser(userId));
 	}
-	
+
 	@PostMapping("/register")
-	public ResponseEntity<UserResponseDTO>register (@Valid @RequestBody RegisterRequestDTO request ){
+	public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody RegisterRequestDTO request) {
 		return ResponseEntity.ok(userServ.register(request));
-		
 	}
 	
-	
+	@GetMapping("/{userId}/validate")
+	public ResponseEntity<Boolean> validate(@PathVariable String userId) {
+		return ResponseEntity.ok(userServ.existByUserId(userId));
+	}
 
 }
