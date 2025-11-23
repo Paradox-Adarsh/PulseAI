@@ -1,0 +1,12 @@
+# Ignore compiled class files
+*.class
+
+# Maven / Gradle build directories
+target/
+build/
+
+# Eclipse project files
+.settings/
+.project
+.classpath
+bin/
