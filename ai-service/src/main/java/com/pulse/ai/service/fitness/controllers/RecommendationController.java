@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pulse.ai.service.fitness.models.Recommendations;
+import com.pulse.ai.service.fitness.services.RecommendationService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,12 +17,23 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("api/recommendation")
 public class RecommendationController {
-//	private final RecommendationService recService;
+	private final RecommendationService recService;
 	
-//	
-//	@GetMapping("user/{userId}")
-//	public ResponseEntity<List<Recommendations>>getUserRecommendation(@PathVariable String userId);{
-//		return null;
-//	}
+	
+	@GetMapping("user/{userId}")
+	public ResponseEntity<List<Recommendations>>getUserRecommendation(@PathVariable String userId){
+		
+		return ResponseEntity.ok(recService.getUserRecommendations(userId));
+		
+
+	}
+	
+	
+	@GetMapping("activity/{activityId}")
+	public ResponseEntity<Recommendations> getActivityRecommendation(@PathVariable String activityId){
+		return ResponseEntity.ok(recService.getActivityRecommendation(activityId));
+		
+	}
+	
 
 }
