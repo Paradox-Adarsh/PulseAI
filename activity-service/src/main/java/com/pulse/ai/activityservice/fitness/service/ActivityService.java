@@ -1,5 +1,7 @@
 package com.pulse.ai.activityservice.fitness.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.pulse.ai.activityservice.fitness.dto.ActivityRequest;
@@ -16,7 +18,14 @@ public class ActivityService {
 	private final ActivityRepository activityRepo;
 	
 	private final UserValidationService validate;
+	
+	private final KafkaTemplate<String, Activity>kafkaTemplate;
+	
+	
+	@Value("{kafka.topic.name}")
+	private String topicName;
 
+	
 	public ActivityResponse trackActivity(ActivityRequest request) {
 		
 		if (!validate.validateUser(request.getUserId())) {
@@ -27,6 +36,13 @@ public class ActivityService {
 				.duration(request.getDuration()).caloriesBurned(request.getCaloriesBurned())
 				.startTime(request.getStartTime()).additionalMetrics(request.getAdditionalMetrics()).build();
 		Activity savedActivity = activityRepo.save(activity);
+		
+		try{
+			kafkaTemplate.send(topicName, savedActivity.getUserId(),savedActivity);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
 		return mapToResponse(savedActivity);
 
 	}
