@@ -21,9 +21,9 @@ public class ActivityService {
 	
 	private final KafkaTemplate<String, Activity>kafkaTemplate;
 	
-	
-	@Value("{kafka.topic.name}")
+	@Value("${kafka.topic.name}")
 	private String topicName;
+
 
 	
 	public ActivityResponse trackActivity(ActivityRequest request) {
