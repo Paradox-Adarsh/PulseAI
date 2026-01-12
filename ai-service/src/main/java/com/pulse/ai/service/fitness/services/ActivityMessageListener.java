@@ -13,10 +13,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class ActivityMessageListener {
+	
+	
+	private final ActivityAIService activityAiService;
 
 	@KafkaListener(topics = "${kafka.topic.name}", groupId = "activity-processor-group")
 	public void processActivity(Activity activity) {
 		log.info("Received activity for processing : {} ", activity.getUserId());
+		activityAiService.generateRecommendation(activity);
 
 	}
 

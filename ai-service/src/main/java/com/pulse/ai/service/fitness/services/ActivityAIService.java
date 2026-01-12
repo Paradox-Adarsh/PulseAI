@@ -2,21 +2,38 @@ package com.pulse.ai.service.fitness.services;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pulse.ai.service.fitness.models.Activity;
+import com.pulse.ai.service.fitness.models.Recommendations;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @Service
-@NoArgsConstructor(force=true)
+@RequiredArgsConstructor
 public class ActivityAIService {
 	private final GeminiService geminiService;
-	public void generateRecommendation(Activity activity) {
+	public Recommendations generateRecommendation(Activity activity) {
 		String prompt=createPromptForActivity(activity); 
-		log.info("RESPONSE FROM GEMINI AI ", geminiService.getRecommendations(prompt)); 
+		String aiResponse=geminiService.getRecommendations(prompt);
+		log.info("RESPONSE FROM GEMINI AI ", aiResponse); 
+		return processAIResponse(activity,aiResponse);
+		
+	}
+	private Recommendations processAIResponse(Activity activity, String aiResponse) {
+		try {
+			
+			ObjectMapper mapper=new ObjectMapper();
+			JsonNode rootNode=mapper.readTree(aiResponse);
+			JsonNode textNode=rootNode.path("candidates").get(0).path("content").get("parts").get(0).path("text");
+			String jsonContent=textNode.asText().replaceAll("```json\\n", "").replaceAll("\\n```", "").trim();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 	private String createPromptForActivity(Activity activity) {
 		
